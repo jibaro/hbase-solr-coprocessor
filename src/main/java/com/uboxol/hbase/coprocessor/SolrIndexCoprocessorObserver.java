@@ -18,9 +18,6 @@ public class SolrIndexCoprocessorObserver extends BaseRegionObserver {
     public void postPut(ObserverContext<RegionCoprocessorEnvironment> e, Put put, WALEdit edit, Durability durability) throws IOException {
         String rowKey = Bytes.toString(put.getRow());
         try {
-//            Cell cellId = put.get(Bytes.toBytes("data"), Bytes.toBytes("id")).get(0);
-//            String id = new String(CellUtil.cloneValue(cellId));
-
             Cell cellInnerCode = put.get(Bytes.toBytes("data"), Bytes.toBytes("inner_code")).get(0);
             String innerCode = new String(CellUtil.cloneValue(cellInnerCode));
 

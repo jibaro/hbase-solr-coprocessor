@@ -1,14 +1,6 @@
 package com.uboxol.solr;
 
 import com.uboxol.model.VmMoney;
-import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.SolrServer;
-import org.apache.solr.client.solrj.impl.HttpSolrServer;
-import org.apache.solr.client.solrj.response.QueryResponse;
-import org.apache.solr.common.SolrDocument;
-import org.apache.solr.common.SolrDocumentList;
-import org.apache.solr.common.params.SolrParams;
-
 import java.util.*;
 
 /**
