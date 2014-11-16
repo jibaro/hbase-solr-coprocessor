@@ -1,20 +1,6 @@
 package com.uboxol.solr;
 
 import com.uboxol.model.VmMoney;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.hbase.HBaseConfiguration;
-import org.apache.log4j.Logger;
-import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.SolrServer;
-import org.apache.solr.client.solrj.SolrServerException;
-import org.apache.solr.client.solrj.impl.CloudSolrServer;
-import org.apache.solr.client.solrj.impl.ConcurrentUpdateSolrServer;
-import org.apache.solr.client.solrj.impl.HttpSolrServer;
-import org.apache.solr.client.solrj.response.QueryResponse;
-import org.apache.solr.common.SolrDocument;
-import org.apache.solr.common.SolrDocumentList;
-import org.apache.solr.common.SolrInputDocument;
-
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.locks.Lock;
@@ -69,6 +55,9 @@ public class SolrWriter {
 
     }
 
+    /**
+     * 批量提交
+     */
     public void inputDoc(List<VmMoney> vmMoneyList) throws IOException, SolrServerException {
         if (vmMoneyList == null || vmMoneyList.size() == 0) {
             return;
@@ -89,11 +78,13 @@ public class SolrWriter {
         solrserver.add(doclist);
     }
 
+    /**
+     * 单条提交
+     */
     public void inputDoc(VmMoney vmMoney) throws IOException, SolrServerException {
         if (vmMoney == null) {
             return;
         }
-
         SolrInputDocument doc = new SolrInputDocument();
         doc.addField("id", vmMoney.getId());
         doc.addField("node_id", vmMoney.getNodeId());
